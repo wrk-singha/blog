@@ -3,11 +3,33 @@
 
 <head>
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content="Commodity Insights Cotton | AgriBazaar" />
-    <meta property="og:image" content="https://blog.agribazaar.com/wp-content/uploads/2021/03/cotton.jpg" />
-    <meta property="og:image:secure_url" content="https://blog.agribazaar.com/wp-content/uploads/2021/03/cotton.jpg" />
+    <meta id="og-title" property="og:title" content="Commodity Insights Cotton | AgriBazaar" />
+    <meta id="og-image" property="og:image" content="https://blog.agribazaar.com/wp-content/uploads/2021/03/cotton.jpg" />
+    <meta id="og-image-secure" property="og:image:secure_url" content="https://blog.agribazaar.com/wp-content/uploads/2021/03/cotton.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="1200" />
+    <script>
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                title: params.get('title'),
+                image: params.get('image')
+            };
+        }
+
+        function updateMetaTags() {
+            const params = getQueryParams();
+            if (params.title) {
+                document.getElementById('og-title').setAttribute('content', params.title);
+            }
+            if (params.image) {
+                document.getElementById('og-image').setAttribute('content', params.image);
+                document.getElementById('og-image-secure').setAttribute('content', params.image);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', updateMetaTags);
+    </script>
 </head>
 
 <body></body>
